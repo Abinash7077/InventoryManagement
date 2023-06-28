@@ -35,6 +35,7 @@ const InventoryConsumption = () => {
       await axios.post(API_URL, { itemId: selectedItem, quantity: convertedQuantity });
       setSelectedItem('');
       setQuantity('');
+      alert("Consumption added")
     } catch (error) {
       console.error('Error consuming item:', error);
     }
@@ -69,7 +70,7 @@ const InventoryConsumption = () => {
           onChange={(e) => setQuantity(e.target.value)}
         />
       </div>
-      <button className="btn btn-primary" onClick={handleConsumption}>Consume Item</button>
+      <button className="btn btn-dark" onClick={handleConsumption}>Consume Item</button>
     </div>
   );
 };

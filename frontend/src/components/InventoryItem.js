@@ -38,6 +38,7 @@ const InventoryItem = () => {
       fetchItems();
       setName("");
       setUnit("");
+      alert("Item Created")
     } catch (error) {
       console.error("Error creating item:", error);
     }
@@ -98,7 +99,7 @@ const InventoryItem = () => {
                         />
                       </div>
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-dark"
                         onClick={handleCreateItem}
                       >
                         Create Item

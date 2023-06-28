@@ -113,6 +113,7 @@ const InventAdd = () => {
       await axios.post(API_URL, { itemId: selectedItem, quantity: convertedQuantity });
       setSelectedItem('');
       setQuantity('');
+      alert("Item added")
     } catch (error) {
       console.error('Error consuming item:', error);
     }
@@ -147,7 +148,7 @@ const InventAdd = () => {
           onChange={(e) => setQuantity(e.target.value)}
         />
       </div>
-      <button className="btn btn-primary" onClick={handleAddition}>Addition Item</button>
+      <button className="btn btn-dark" onClick={handleAddition}>Addition Item</button>
     </div>
   );
 };
