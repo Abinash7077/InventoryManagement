@@ -34,7 +34,12 @@ background-color: black!important;
 .link{
   color: black;
 }
-
+.nav-page{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 25px;
+}
 .focus{
 
 }

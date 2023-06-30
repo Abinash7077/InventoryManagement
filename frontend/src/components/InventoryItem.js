@@ -16,6 +16,14 @@ const InventoryItem = () => {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
+  const[currentPage,setCurrentPage]=useState(1)
+  const recordsPerPage=5;
+  const lastIndex=currentPage*recordsPerPage;
+  const firstIndex=lastIndex-recordsPerPage;
+  const records=items.slice(firstIndex,lastIndex)
+  const nbPage=Math.ceil(items.length/recordsPerPage)
+  const numbers=[...Array(nbPage+1).keys()].slice(1)
+
   
 
   useEffect(() => {
@@ -43,6 +51,19 @@ const InventoryItem = () => {
       console.error("Error creating item:", error);
     }
   };
+  const prePage=()=>{
+if(currentPage !== firstIndex){
+  setCurrentPage(currentPage-1)
+}
+  }
+  const nextPage=()=>{
+    if(currentPage !== lastIndex){
+      setCurrentPage(currentPage+1)
+    }
+  }
+  const changeCPage=(id)=>{
+setCurrentPage(id)
+  }
 
   return (
     <>
@@ -125,7 +146,7 @@ const InventoryItem = () => {
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {records.map((item) => (
                 <tr key={item._id}>
                   <td>{item.name}</td>
                   <td>{item.currentStock}</td>
@@ -142,8 +163,20 @@ const InventoryItem = () => {
             </Row>
           </Tab.Container>
         </div>
-
-       
+<div className="nav-page">
+        <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item"><a className="page-link" href="#" onClick={prePage}>Prev</a></li>
+    {
+      numbers.map((n,i)=>(
+        <li className={`page-item ${currentPage==n?'active':''}`} key={i}><a className="page-link" href="#"onClick={()=>changeCPage(n)}>{n}</a></li>
+      ))
+    }
+   
+    <li className="page-item"><a className="page-link" href="#" onClick={nextPage}>Next</a></li>
+  </ul>
+</nav>
+</div>
       </div>
     </>
   );
